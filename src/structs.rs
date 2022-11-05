@@ -20,6 +20,19 @@ impl Person {
             last_name: last.to_string(),
         }
     }
+
+    /// Get full name
+    fn full_name(&self) -> String {
+        format!("{} {}", self.first_name, self.last_name)
+    }
+
+    fn set_last_name(&mut self, last_name: &str) {
+        self.last_name = last_name.to_string();
+    }
+
+    fn to_tuple(self) -> (String, String) {
+        (self.first_name, self.last_name)
+    }
 }
 pub fn run() {
     let mut c = Color {
@@ -37,5 +50,9 @@ pub fn run() {
     println!("Color: {} {} {}", c.0, c.1, c.2);
 
     let mut p = Person::new("John", "Doe");
-    println!("Person: {} {}", p.first_name, p.last_name);
+    println!("Person: {}", p.full_name());
+
+    p.set_last_name("Williams");
+    println!("Person: {}", p.full_name());
+    println!("Tuple: {:?}", p.to_tuple());
 }
